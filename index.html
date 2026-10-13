@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="leaf">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sohel Khan // Aspiring Game Developer & Shinobi Coder</title>
+  <meta name="description" content="Portfolio of Sohel Khan - 19-year-old B.Tech CSE Core student at JECRC University, Aspiring Game Developer, Footballer, and Multi-Game Master. Naruto-themed interactive portfolio.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%23ff6b00'/><path d='M50 20 C65 20 78 32 78 50 C78 65 65 78 50 78 C35 78 22 65 22 50 C22 38 30 30 42 27 L46 38 C38 40 33 44 33 50 C33 60 41 67 50 67 C59 67 67 60 67 50 C67 41 60 33 50 33 Z' fill='%23ffffff'/><circle cx='50' cy='50' r='6' fill='%23ff6b00'/></svg>">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Cinzel:wght@600;800;900&family=Fira+Code:wght@400;600&family=Noto+Sans+JP:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Custom Kunai & Chakra Cursor -->
+  <div id="chakra-cursor" class="chakra-cursor" aria-hidden="true">
+    <div class="cursor-glow"></div>
+    <div class="cursor-kunai">🗡️</div>
+  </div>
+
+  <!-- Background Chakra Canvas -->
+  <canvas id="chakra-canvas" aria-hidden="true"></canvas>
+
+  <!-- Sound & Jutsu Mode Bar / Quick Controls -->
+  <aside class="quick-controls" aria-label="Audio and Theme Controls">
+    <button id="sound-toggle-btn" class="ctrl-btn" title="Toggle Shinobi Sound FX" aria-pressed="false">
+      <span class="icon" id="sound-icon">🔇</span>
+      <span class="label">Sound FX</span>
+    </button>
+    <div class="theme-dropdown-wrap">
+      <button id="theme-menu-btn" class="ctrl-btn" title="Switch Shinobi Mode">
+        <span class="icon">🍥</span>
+        <span class="label" id="theme-label">Will of Fire</span>
+      </button>
+      <div class="theme-menu" id="theme-menu">
+        <button class="theme-opt active" data-theme="leaf">🍃 Will of Fire (Leaf)</button>
+        <button class="theme-opt" data-theme="sharingan">👁️ Sharingan (Uchiha)</button>
+        <button class="theme-opt" data-theme="sage">🐸 Sage Mode (Rasengan)</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Sticky Navbar -->
+  <header class="shinobi-header">
+    <div class="header-container">
+      <a href="#hero" class="brand-logo" title="Sohel Khan Home">
+        <div class="leaf-crest">
+          <svg viewBox="0 0 100 100" class="crest-svg" aria-hidden="true">
+            <circle cx="50" cy="50" r="46" class="crest-bg"/>
+            <path d="M50 20 C65 20 78 32 78 50 C78 65 65 78 50 78 C35 78 22 65 22 50 C22 38 30 30 42 27 L46 38 C38 40 33 44 33 50 C33 60 41 67 50 67 C59 67 67 60 67 50 C67 41 60 33 50 33 Z" class="crest-spiral"/>
+            <polygon points="50,14 55,24 45,24" class="crest-point"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">SOHEL KHAN</span>
+          <span class="brand-sub"><span class="jp-kanji">ソヘル・カーン</span> • GAME SHINOBI</span>
+        </div>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <a href="#about" class="nav-link"><span class="nav-num">01.</span> Shinobi ID</a>
+        <a href="#arsenal" class="nav-link"><span class="nav-num">02.</span> Jutsu Arsenal</a>
+        <a href="#missions" class="nav-link"><span class="nav-num">03.</span> Missions</a>
+        <a href="#arena" class="nav-link"><span class="nav-num">04.</span> Sports & Gaming</a>
+        <a href="#minigame" class="nav-link nav-highlight"><span class="nav-num">05.</span> 🎮 Play Game</a>
+        <a href="#journey" class="nav-link"><span class="nav-num">06.</span> Nindo Path</a>
+        <a href="#contact" class="nav-link cta-link">📜 Summon Me</a>
+      </nav>
+
+      <button class="hamburger-btn" id="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobile-drawer">
+      <nav class="mobile-nav">
+        <a href="#hero" class="m-link">🍥 Home (Konoha Gate)</a>
+        <a href="#about" class="m-link">🥷 Shinobi Registration ID</a>
+        <a href="#arsenal" class="m-link">⚡ Jutsu Arsenal (Skills)</a>
+        <a href="#missions" class="m-link">📜 Missions (Game Projects)</a>
+        <a href="#arena" class="m-link">⚽ Sports & Multi-Game Arena</a>
+        <a href="#minigame" class="m-link m-highlight">🎮 Play Chakra Dash Mini-Game</a>
+        <a href="#journey" class="m-link">⛩️ Path to Game Hokage</a>
+        <a href="#contact" class="m-link m-cta">📜 Summon Sohel (Contact)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="badge-cluster">
+            <span class="shinobi-badge main-badge">
+              <span class="pulsing-chakra"></span>
+              LEVEL 19 SHINOBI • B.TECH CSE CORE
+            </span>
+            <span class="shinobi-badge location-badge">
+              🏛️ JECRC UNIVERSITY
+            </span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="greeting-jp">火の意志 // WILL OF FIRE</span>
+            <span class="hero-name">SOHEL KHAN</span>
+            <span class="hero-role">ASPIRING GAME DEVELOPER</span>
+          </h1>
+
+          <p class="hero-tagline">
+            Just like Naruto swore to become the Hokage against all odds, 
+            <strong>I am on a relentless mission to build breathtaking virtual worlds.</strong> 
+            A 19-year-old Computer Science engineer bridging hardcore mechanics, physics, and the instinct of a multi-game athlete.
+          </p>
+
+          <div class="nindo-quote-box">
+            <div class="scroll-tag">MY NINJA WAY (忍道)</div>
+            <p class="nindo-text">
+              "To reverse-engineer the fun in every game, never surrender when code breaks, and craft gameplay that players remember forever. <em>Dattebayo!</em>"
+            </p>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#missions" class="btn btn-primary">
+              <span class="btn-icon">📜</span>
+              <span>Explore Missions</span>
+            </a>
+            <a href="#minigame" class="btn btn-secondary">
+              <span class="btn-icon">🎮</span>
+              <span>Play Chunin Exam Game</span>
+            </a>
+            <a href="#about" class="btn btn-ghost">
+              <span>View Shinobi Card</span>
+              <span class="arrow">→</span>
+            </a>
+          </div>
+
+          <div class="hero-stats-strip">
+            <div class="stat-pill">
+              <span class="stat-value">19</span>
+              <span class="stat-lbl">Years Old</span>
+            </div>
+            <div class="stat-divider">/</div>
+            <div class="stat-pill">
+              <span class="stat-value">CSE</span>
+              <span class="stat-lbl">Core @ JECRC</span>
+            </div>
+            <div class="stat-divider">/</div>
+            <div class="stat-pill">
+              <span class="stat-value">⚽ #10</span>
+              <span class="stat-lbl">Striker Instinct</span>
+            </div>
+            <div class="stat-divider">/</div>
+            <div class="stat-pill">
+              <span class="stat-value">∞</span>
+              <span class="stat-lbl">All-Game Mastery</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="shinobi-seal-ring">
+            <div class="rotating-symbols">
+              <span>火</span><span>風</span><span>雷</span><span>土</span><span>水</span><span>陰</span><span>陽</span><span>忍</span>
+            </div>
+            <div class="hero-avatar-card">
+              <div class="avatar-headband">
+                <span class="plate-metal">
+                  <svg viewBox="0 0 40 20" class="mini-leaf"><path d="M20 5 C26 5 30 9 30 14 C30 18 26 21 20 21 C14 21 10 18 10 14 C10 11 13 9 17 8 L18 11 C15 12 13 13 13 15 C13 17 16 19 20 19 C24 19 27 17 27 14 C27 11 24 9 20 9 Z" fill="#222"/></svg>
+                </span>
+              </div>
+              <div class="avatar-illustration">
+                <!-- Ninja Developer Stylized SVG Graphic -->
+                <svg viewBox="0 0 240 260" class="ninja-avatar-svg" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <radialGradient id="chakraGlow" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="#ff9f1c" stop-opacity="0.8"/>
+                      <stop offset="60%" stop-color="#ff6b00" stop-opacity="0.4"/>
+                      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+                    </radialGradient>
+                    <linearGradient id="jacketGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#ff6b00"/>
+                      <stop offset="100%" stop-color="#181a20"/>
+                    </linearGradient>
+                  </defs>
+                  
+                  <!-- Chakra Aura -->
+                  <circle cx="120" cy="130" r="110" fill="url(#chakraGlow)"/>
+
+                  <!-- Torso & Shinobi Tracksuit Jacket -->
+                  <path d="M50 240 C55 180 80 160 120 160 C160 160 185 180 190 240 Z" fill="url(#jacketGrad)"/>
+                  <path d="M100 160 L120 220 L140 160 Z" fill="#ffffff" opacity="0.9"/>
+                  <!-- Konoha Collar -->
+                  <path d="M80 165 C95 150 145 150 160 165 L175 180 L65 180 Z" fill="#ff6b00" stroke="#ffd166" stroke-width="2"/>
+                  <!-- Gamer Headset Band over shoulders -->
+                  <path d="M60 190 C50 195 50 215 65 220" stroke="#00f0ff" stroke-width="6" stroke-linecap="round"/>
+                  <path d="M180 190 C190 195 190 215 175 220" stroke="#00f0ff" stroke-width="6" stroke-linecap="round"/>
+
+                  <!-- Neck -->
+                  <rect x="105" y="130" width="30" height="35" rx="5" fill="#e0a96d"/>
+
+                  <!-- Face -->
+                  <polygon points="90,110 120,155 150,110 150,90 90,90" fill="#e0a96d"/>
+                  <ellipse cx="120" cy="115" rx="35" ry="32" fill="#f4c28d"/>
+
+                  <!-- Eyes with determination & subtle Sage spark -->
+                  <ellipse cx="106" cy="115" rx="6" ry="4" fill="#1b1c24"/>
+                  <circle cx="107" cy="114" r="2" fill="#00f0ff"/>
+                  <ellipse cx="134" cy="115" rx="6" ry="4" fill="#1b1c24"/>
+                  <circle cx="135" cy="114" r="2" fill="#00f0ff"/>
+                  <!-- Eyebrows -->
+                  <path d="M98 108 L114 110" stroke="#1b1c24" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M142 108 L126 110" stroke="#1b1c24" stroke-width="3" stroke-linecap="round"/>
+                  <!-- Confident Smile -->
+                  <path d="M112 133 Q120 138 128 133" stroke="#9e472a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+                  <!-- Shinobi Headband Fabric -->
+                  <rect x="78" y="85" width="84" height="20" rx="3" fill="#1f2430"/>
+                  <!-- Headband Metal Plate -->
+                  <rect x="94" y="87" width="52" height="16" rx="3" fill="#d8dce6" stroke="#9ba3b4" stroke-width="1.5"/>
+                  <circle cx="98" cy="95" r="1.5" fill="#555"/>
+                  <circle cx="142" cy="95" r="1.5" fill="#555"/>
+                  <!-- Konoha Leaf Symbol on plate -->
+                  <path d="M120 90 C125 90 128 93 128 95 C128 98 125 100 120 100 C116 100 114 98 114 96 C114 94 116 93 118 92.5 L119 94 C117 95 116 95.5 116 96 C116 97.5 118 98.5 120 98.5 C122.5 98.5 124.5 97 124.5 95 C124.5 93 122.5 91.5 120 91.5 Z" fill="#ff6b00"/>
+
+                  <!-- Spiky Anime Hair (Black & Auburn Highlights) -->
+                  <path d="M75 90 L60 70 L80 75 L75 55 L98 68 L105 45 L120 65 L135 45 L142 68 L165 55 L160 75 L180 70 L165 90 Z" fill="#11131a"/>
+                  <path d="M85 80 L75 65 L90 70 L95 55 L110 65 L120 52 L130 65 L145 55 L150 70 L165 65 L155 80 Z" fill="#ff6b00" opacity="0.3"/>
+
+                  <!-- Gamer Pro Headset over ears -->
+                  <rect x="68" y="95" width="12" height="24" rx="4" fill="#00f0ff" stroke="#111" stroke-width="2"/>
+                  <rect x="160" y="95" width="12" height="24" rx="4" fill="#00f0ff" stroke="#111" stroke-width="2"/>
+                  <!-- Headset boom mic -->
+                  <path d="M72 110 Q70 135 105 136" stroke="#00f0ff" stroke-width="3" fill="none" stroke-linecap="round"/>
+                  <circle cx="106" cy="136" r="3" fill="#ff6b00"/>
+
+                  <!-- Floating Gaming & Football Sigils -->
+                  <g transform="translate(30, 80) scale(0.6)">
+                    <!-- Mini Football -->
+                    <circle cx="20" cy="20" r="18" fill="#ffffff" stroke="#111" stroke-width="2"/>
+                    <polygon points="20,12 26,17 24,24 16,24 14,17" fill="#111"/>
+                  </g>
+                  <g transform="translate(180, 80) scale(0.6)">
+                    <!-- Gamepad icon -->
+                    <rect x="5" y="10" width="30" height="20" rx="6" fill="#111" stroke="#00f0ff" stroke-width="2"/>
+                    <circle cx="12" cy="20" r="2" fill="#ffd166"/>
+                    <circle cx="28" cy="18" r="1.5" fill="#ff6b00"/>
+                    <circle cx="25" cy="22" r="1.5" fill="#00f0ff"/>
+                  </g>
+                </svg>
+              </div>
+
+              <div class="avatar-footer-tag">
+                <span class="card-role-title">SOHEL KHAN • CSE CORE</span>
+                <span class="card-affil">JECRC UNIVERSITY</span>
+              </div>
+            </div>
+
+            <!-- Floating jutsu spheres -->
+            <div class="floating-orb orb-1" title="Rasengan Logic">🌀</div>
+            <div class="floating-orb orb-2" title="Total Football">⚽</div>
+            <div class="floating-orb orb-3" title="Game Controller">🎮</div>
+            <div class="floating-orb orb-4" title="C++ & C#">💻</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: SHINOBI REGISTRATION CARD / ABOUT ME -->
+    <section id="about" class="section-padded about-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">CLASSIFIED DOSSIER // 忍者登録証</span>
+          <h2 class="section-title">Official Shinobi Registration</h2>
+          <p class="section-desc">Konoha Leaf Archives • Candidate Identification & Game Development Mission Profile</p>
+        </div>
+
+        <div class="shinobi-id-layout">
+          <!-- 3D Interactive Tilt Shinobi ID Card -->
+          <div class="id-card-wrapper" id="shinobi-card-3d">
+            <div class="id-card">
+              <div class="id-card-header">
+                <div class="leaf-watermark">木ノ葉</div>
+                <div class="id-card-title-group">
+                  <span class="reg-label">SHINOBI REGISTRATION ID</span>
+                  <span class="reg-number">#JECRC-2026-SK19</span>
+                </div>
+                <div class="id-card-stamp">KONOHA APPROVED</div>
+              </div>
+
+              <div class="id-card-body">
+                <div class="id-avatar-frame">
+                  <div class="avatar-photo-mock">
+                    <span class="photo-kanji">ソヘル</span>
+                    <span class="photo-label">SOHEL KHAN</span>
+                  </div>
+                  <div class="rank-badge-pill">GENIN ➔ GAME HOKAGE</div>
+                  <div class="bloodline-tag">KEKKEI GENKAI: TOTAL GAMING</div>
+                </div>
+
+                <div class="id-info-grid">
+                  <div class="info-cell">
+                    <span class="info-label">FULL NAME</span>
+                    <span class="info-val highlight-val">Sohel Khan</span>
+                  </div>
+                  <div class="info-cell">
+                    <span class="info-label">AGE</span>
+                    <span class="info-val">19 Years</span>
+                  </div>
+                  <div class="info-cell">
+                    <span class="info-label">ACADEMIC GUILD</span>
+                    <span class="info-val">JECRC University, Jaipur</span>
+                  </div>
+                  <div class="info-cell">
+                    <span class="info-label">DISCIPLINE</span>
+                    <span class="info-val">B.Tech Computer Science & Engg (Core)</span>
+                  </div>
+                  <div class="info-cell">
+                    <span class="info-label">DREAM / AMBITION</span>
+                    <span class="info-val text-fire">Elite Game Developer & Director</span>
+                  </div>
+                  <div class="info-cell">
+                    <span class="info-label">CHAKRA AFFINITY</span>
+                    <span class="info-val">Physics Simulation, C++, Unreal, Unity</span>
+                  </div>
+                  <div class="info-cell full-span">
+                    <span class="info-label">PRIMARY PASSIONS & HOBBIES</span>
+                    <span class="info-val">Football Striker ⚽ • Universal Gamer (Can play & master almost any game!) 🎮</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="id-card-footer">
+                <div class="barcode-graphic" aria-hidden="true">
+                  <span>||| || |||| | ||||| || ||| |||| | || ||||| |||</span>
+                </div>
+                <div class="signature-line">
+                  <span class="sig-script">Sohel Khan</span>
+                  <span class="sig-title">Shinobi Signature</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dossier Narrative -->
+          <div class="dossier-story">
+            <h3 class="story-heading">
+              <span class="story-prefix">THE SHINOBI'S ORIGIN</span>
+              From the Streets of Jaipur to Virtual Universes
+            </h3>
+
+            <p class="story-para">
+              Hi, I'm <strong>Sohel Khan</strong>! At 19 years old, I am pursuing my <strong>B.Tech in Computer Science and Engineering (Core)</strong> at <strong>JECRC University</strong>. 
+              My ultimate dream in life is simple yet grand: <strong>to become a world-class Game Developer.</strong>
+            </p>
+
+            <p class="story-para">
+              Ever since I first touched a controller and stepped onto a football pitch, I’ve been fascinated by how mechanics create adrenaline. 
+              Football taught me positioning, lightning-fast reflexes, physics of curves, and teamwork under pressure. 
+              Beyond football, <strong>I have a natural gift to pick up and play almost every game</strong>—whether it's strategic chess, battle royales, tactical shooters, racing sims, or arcade brawlers.
+            </p>
+
+            <p class="story-para">
+              To me, game development isn't just a career; it's my <em>Nindo (Ninja Way)</em>. I don't just want to play great games; I want to build the games that define the next generation of entertainment.
+            </p>
+
+            <div class="traits-grid">
+              <div class="trait-box">
+                <div class="trait-icon">⚽</div>
+                <div class="trait-details">
+                  <h4>Striker's Precision</h4>
+                  <p>Translating ball trajectory, friction, and kinetic momentum straight into game engine physics.</p>
+                </div>
+              </div>
+              <div class="trait-box">
+                <div class="trait-icon">🕹️</div>
+                <div class="trait-details">
+                  <h4>All-Game Adaptability</h4>
+                  <p>In-depth intuition for hitboxes, input latency, pacing, and rewarding game loops.</p>
+                </div>
+              </div>
+              <div class="trait-box">
+                <div class="trait-icon">💻</div>
+                <div class="trait-details">
+                  <h4>JECRC CSE Rigor</h4>
+                  <p>Strong foundations in data structures, algorithms, memory management, and clean architecture.</p>
+                </div>
+              </div>
+              <div class="trait-box">
+                <div class="trait-icon">🔥</div>
+                <div class="trait-details">
+                  <h4>Unstoppable Work Ethic</h4>
+                  <p>Like Naruto mastering the Rasengan through sheer iteration, I debug until the vision runs flawless.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: JUTSU ARSENAL (SKILLS MATRIX) -->
+    <section id="arsenal" class="section-padded arsenal-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">SHINOBI TECHNIQUES // 忍術一覧</span>
+          <h2 class="section-title">The Game Dev Jutsu Arsenal</h2>
+          <p class="section-desc">Mastered disciplines, programming scrolls, and development frameworks in training</p>
+        </div>
+
+        <div class="jutsu-categories-grid">
+          <!-- CATEGORY 1: KEKKEI GENKAI (GAME ENGINES) -->
+          <div class="jutsu-card">
+            <div class="jutsu-card-header">
+              <div class="jutsu-type-badge kekkei">KEKKEI GENKAI (血継限界)</div>
+              <h3 class="jutsu-title">Game Engines & 3D Tools</h3>
+              <p class="jutsu-sub">The bedrock of real-time worlds and interactive physics</p>
+            </div>
+            <ul class="skill-meter-list">
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Unity (C# Game Loop)</span>
+                  <span class="skill-pct">85%</span>
+                </div>
+                <div class="chakra-progress-bar"><div class="fill" style="width: 85%;"></div></div>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Unreal Engine 5 (Blueprints & C++)</span>
+                  <span class="skill-pct">75%</span>
+                </div>
+                <div class="chakra-progress-bar"><div class="fill" style="width: 75%;"></div></div>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Blender (3D Modeling & Rigging Basics)</span>
+                  <span class="skill-pct">70%</span>
+                </div>
+                <div class="chakra-progress-bar"><div class="fill" style="width: 70%;"></div></div>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">HTML5 Canvas / WebGL Game Tech</span>
+                  <span class="skill-pct">88%</span>
+                </div>
+                <div class="chakra-progress-bar"><div class="fill" style="width: 88%;"></div></div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- CATEGORY 2: NINJUTSU (CORE PROGRAMMING & CS) -->
+          <div class="jutsu-card">
+            <div class="jutsu-card-header">
+              <div class="jutsu-type-badge ninjutsu">NINJUTSU (忍術)</div>
+              <h3 class="jutsu-title">Programming & CS Core</h3>
+              <p class="jutsu-sub">JECRC University CSE Foundation: logic, memory & algorithms</p>
+            </div>
+            <ul class="skill-meter-list">
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">C++ (Game Performance & OOP)</span>
+                  <span class="skill-pct">82%</span>
+                </div>
+                <div class="chakra-progress-bar"><div class="fill" style="width: 82%;"></div></div>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">C# (Object Oriented & Scripting)</span>
+                  <span class="skill-pct">86%</span>
+                </div>
+                <div class="chakra-progress-bar"><div class="fill" style="width: 86%;"></div></div>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Data Structures & Algorithms</span>
+                  <span class="skill-pct">80%</span>
+                </div>
+                <div class="chakra-progress-bar"><div class="fill" style="width: 80%;"></div></div>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Python & Mathematics for Games</span>
+                  <span class="skill-pct">78%</span>
+                </div>
+                <div class="chakra-progress-bar"><div class="fill" style="width: 78%;"></div></div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- CATEGORY 3: TAIJUTSU (GAME MECHANICS & PHYSICS) -->
+          <div class="jutsu-card">
+            <div class="jutsu-card-header">
+              <div class="jutsu-type-badge taijutsu">TAIJUTSU (体術)</div>
+              <h3 class="jutsu-title">Mechanics, Physics & Audio</h3>
+              <p class="jutsu-sub">The kinesthetics, game feel, collision and audio triggers</p>
+            </div>
+            <ul class="skill-meter-list">
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Physics Simulation & Rigidbody Dynamics</span>
+                  <span class="skill-pct">84%</span>
+                </div>
+                <div class="chakra-progress-bar"><div class="fill" style="width: 84%;"></div></div>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Collision & Hitbox Systems</span>
+                  <span class="skill-pct">90%</span>
+                </div>
+                <div class="chakra-progress-bar"><div class="fill" style="width: 90%;"></div></div>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">AI Pathfinding (A* & Finite State Machines)</span>
+                  <span class="skill-pct">74%</span>
+                </div>
+                <div class="chakra-progress-bar"><div class="fill" style="width: 74%;"></div></div>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Level Design & Camera Controls</span>
+                  <span class="skill-pct">80%</span>
+                </div>
+                <div class="chakra-progress-bar"><div class="fill" style="width: 80%;"></div></div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- CATEGORY 4: DOJUTSU (ATHLETIC & GAMER INSTINCT) -->
+          <div class="jutsu-card highlight-card">
+            <div class="jutsu-card-header">
+              <div class="jutsu-type-badge dojutsu">DOJUTSU (瞳術)</div>
+              <h3 class="jutsu-title">Gamer Instinct & Multi-Play</h3>
+              <p class="jutsu-sub">The competitive edge: sports mindset & multi-genre mastery</p>
+            </div>
+            <ul class="skill-meter-list">
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Football Kinematics & Spatial Vision</span>
+                  <span class="skill-pct">96%</span>
+                </div>
+                <div class="chakra-progress-bar"><div class="fill" style="width: 96%;"></div></div>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Multi-Game Mechanics Intuition</span>
+                  <span class="skill-pct">95%</span>
+                </div>
+                <div class="chakra-progress-bar"><div class="fill" style="width: 95%;"></div></div>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Feedback Loop & Player Psychology</span>
+                  <span class="skill-pct">88%</span>
+                </div>
+                <div class="chakra-progress-bar"><div class="fill" style="width: 88%;"></div></div>
+              </li>
+              <li class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Rapid Adaptation to New Rules</span>
+                  <span class="skill-pct">98%</span>
+                </div>
+                <div class="chakra-progress-bar"><div class="fill" style="width: 98%;"></div></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: SCROLL OF MISSIONS (GAME PROJECTS) -->
+    <section id="missions" class="section-padded missions-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">MISSION SCROLLS // 任務の巻物</span>
+          <h2 class="section-title">The Shinobi Game Projects</h2>
+          <p class="section-desc">From S-Rank ambitious prototypes to physics experiments and playable builds</p>
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="mission-filters" role="tablist" aria-label="Project rank filter">
+          <button class="filter-btn active" data-filter="all">All Missions</button>
+          <button class="filter-btn" data-filter="s-rank">S-Rank (Flagship)</button>
+          <button class="filter-btn" data-filter="a-rank">A-Rank (Action & Physics)</button>
+          <button class="filter-btn" data-filter="b-rank">B-Rank (Prototypes)</button>
+        </div>
+
+        <div class="missions-grid">
+          <!-- MISSION 1: S-Rank Football Game -->
+          <article class="mission-card" data-rank="s-rank">
+            <div class="mission-banner rank-s">
+              <span class="rank-badge">S-RANK MISSION</span>
+              <span class="genre-tag">SPORTS SIMULATOR</span>
+            </div>
+            <div class="mission-body">
+              <h3 class="mission-title">Super Striker 2026: Apex Ball</h3>
+              <p class="mission-desc">
+                A high-adrenaline arcade football game combining authentic ball aerodynamics (Magnus effect, spin, bounce friction) with anime-style power shots and dynamic goalkeeping AI.
+              </p>
+              <div class="tech-tags">
+                <span class="tag">Unreal Engine 5</span>
+                <span class="tag">C++</span>
+                <span class="tag">Custom Physics</span>
+                <span class="tag">Football AI</span>
+              </div>
+            </div>
+            <div class="mission-footer">
+              <button class="btn-inspect modal-trigger" data-modal="modal-apex">
+                <span>Inspect Mission Log</span>
+                <span class="icon">📜</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- MISSION 2: S-Rank Naruto Combat Game -->
+          <article class="mission-card" data-rank="s-rank">
+            <div class="mission-banner rank-s">
+              <span class="rank-badge">S-RANK MISSION</span>
+              <span class="genre-tag">ACTION BRAWLER</span>
+            </div>
+            <div class="mission-body">
+              <h3 class="mission-title">Shinobi Striker: Way of Fire</h3>
+              <p class="mission-desc">
+                Third-person ninja action combat prototype featuring wall-running, chakra-powered dashes, aerial juggle combos, and responsive hand-sign ability chaining.
+              </p>
+              <div class="tech-tags">
+                <span class="tag">Unity 3D</span>
+                <span class="tag">C#</span>
+                <span class="tag">Finite State Machine</span>
+                <span class="tag">VFX Shaders</span>
+              </div>
+            </div>
+            <div class="mission-footer">
+              <button class="btn-inspect modal-trigger" data-modal="modal-shinobi">
+                <span>Inspect Mission Log</span>
+                <span class="icon">📜</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- MISSION 3: A-Rank Roguelike -->
+          <article class="mission-card" data-rank="a-rank">
+            <div class="mission-banner rank-a">
+              <span class="rank-badge">A-RANK MISSION</span>
+              <span class="genre-tag">ROGUELIKE RPG</span>
+            </div>
+            <div class="mission-body">
+              <h3 class="mission-title">Dungeon of the Nine Tails</h3>
+              <p class="mission-desc">
+                Procedurally generated dungeon crawler with binary space partitioning (BSP), inventory item management, dynamic line-of-sight fog-of-war, and boss battle phases.
+              </p>
+              <div class="tech-tags">
+                <span class="tag">C++</span>
+                <span class="tag">Data Structures</span>
+                <span class="tag">Procedural Gen</span>
+                <span class="tag">A* Pathfinding</span>
+              </div>
+            </div>
+            <div class="mission-footer">
+              <button class="btn-inspect modal-trigger" data-modal="modal-dungeon">
+                <span>Inspect Mission Log</span>
+                <span class="icon">📜</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- MISSION 4: A-Rank WebGL Arena -->
+          <article class="mission-card" data-rank="a-rank">
+            <div class="mission-banner rank-a">
+              <span class="rank-badge">A-RANK MISSION</span>
+              <span class="genre-tag">INTERACTIVE WEBGL</span>
+            </div>
+            <div class="mission-body">
+              <h3 class="mission-title">Rasengan Chakra Core (WebGL)</h3>
+              <p class="mission-desc">
+                High-performance real-time GPU particle simulation with 50,000+ swirling vortex particles simulating Naruto's Rasengan, responsive to cursor turbulence and audio frequencies.
+              </p>
+              <div class="tech-tags">
+                <span class="tag">WebGL</span>
+                <span class="tag">Three.js</span>
+                <span class="tag">GLSL Shaders</span>
+                <span class="tag">Web Audio API</span>
+              </div>
+            </div>
+            <div class="mission-footer">
+              <button class="btn-inspect modal-trigger" data-modal="modal-rasengan">
+                <span>Inspect Mission Log</span>
+                <span class="icon">📜</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- MISSION 5: B-Rank 2D Platformer -->
+          <article class="mission-card" data-rank="b-rank">
+            <div class="mission-banner rank-b">
+              <span class="rank-badge">B-RANK MISSION</span>
+              <span class="genre-tag">2D PLATFORMER</span>
+            </div>
+            <div class="mission-body">
+              <h3 class="mission-title">Kunai Velocity: Ninja Dash</h3>
+              <p class="mission-desc">
+                Physics-focused 2D speedrunner experimenting with grappling hook mechanics, momentum conservation, variable jump heights, and tight responsive controls.
+              </p>
+              <div class="tech-tags">
+                <span class="tag">Godot / C#</span>
+                <span class="tag">Kinematics</span>
+                <span class="tag">Level Design</span>
+                <span class="tag">Speedrun Timer</span>
+              </div>
+            </div>
+            <div class="mission-footer">
+              <button class="btn-inspect modal-trigger" data-modal="modal-kunai">
+                <span>Inspect Mission Log</span>
+                <span class="icon">📜</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- MISSION 6: B-Rank Multi-Game Experiment -->
+          <article class="mission-card" data-rank="b-rank">
+            <div class="mission-banner rank-b">
+              <span class="rank-badge">B-RANK MISSION</span>
+              <span class="genre-tag">GAME ANALYTICS</span>
+            </div>
+            <div class="mission-body">
+              <h3 class="mission-title">Omni-Gamer Mechanics Lab</h3>
+              <p class="mission-desc">
+                A design sandbox breaking down mechanical tropes across 20+ game genres: FPS recoil curves, fighter frame advantage, and sports movement inertia.
+              </p>
+              <div class="tech-tags">
+                <span class="tag">Game Design</span>
+                <span class="tag">Math / Curve Models</span>
+                <span class="tag">UX Analysis</span>
+                <span class="tag">Prototyping</span>
+              </div>
+            </div>
+            <div class="mission-footer">
+              <button class="btn-inspect modal-trigger" data-modal="modal-omni">
+                <span>Inspect Mission Log</span>
+                <span class="icon">📜</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: SPORTS & GAMING ARENA (FOOTBALL & ALL-GAME MASTERY) -->
+    <section id="arena" class="section-padded arena-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">THE WARRIOR'S INSTINCT // 全競技制覇</span>
+          <h2 class="section-title">The Multi-Game Virtuoso</h2>
+          <p class="section-desc">Football Striker on the pitch • Master of every arena • Turning game instinct into game development</p>
+        </div>
+
+        <div class="arena-content-split">
+          <!-- Football Pitch Card -->
+          <div class="football-card">
+            <div class="pitch-container">
+              <div class="pitch-markings">
+                <div class="pitch-center-circle"></div>
+                <div class="pitch-half-line"></div>
+                <div class="pitch-penalty-box"></div>
+                <div class="pitch-goal"></div>
+              </div>
+              <div class="striker-token">
+                <div class="token-pulse"></div>
+                <div class="token-badge">
+                  <span class="token-num">#10</span>
+                  <span class="token-name">SOHEL</span>
+                </div>
+              </div>
+            </div>
+            <div class="football-card-info">
+              <div class="pitch-title-row">
+                <h3 class="pitch-title">⚽ The Number 10 Shinobi</h3>
+                <span class="pitch-tag">FORWARD / STRIKER</span>
+              </div>
+              <p class="pitch-quote">
+                "When I'm on the pitch, I don't just see the ball; I see vectors, passing lanes, defender momentum, and angles to exploit. That exact same intuition is what makes a game feel snappy and thrilling."
+              </p>
+
+              <!-- Radar/Attribute Bars -->
+              <div class="stat-bars-football">
+                <div class="fb-stat">
+                  <span class="lbl">Pace & Agility</span>
+                  <span class="val">92</span>
+                  <div class="fb-bar"><div class="fill" style="width: 92%;"></div></div>
+                </div>
+                <div class="fb-stat">
+                  <span class="lbl">Pitch Vision & Spatial IQ</span>
+                  <span class="val">94</span>
+                  <div class="fb-bar"><div class="fill" style="width: 94%;"></div></div>
+                </div>
+                <div class="fb-stat">
+                  <span class="lbl">Striking Instinct</span>
+                  <span class="val">90</span>
+                  <div class="fb-bar"><div class="fill" style="width: 90%;"></div></div>
+                </div>
+                <div class="fb-stat">
+                  <span class="lbl">Team Chemistry & Nindo</span>
+                  <span class="val">99</span>
+                  <div class="fb-bar"><div class="fill" style="width: 99%;"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- The All-Games Showcase -->
+          <div class="all-games-card">
+            <h3 class="all-games-heading">
+              <span class="accent-dot"></span>
+              "I Can Play Almost Every Game"
+            </h3>
+            <p class="all-games-intro">
+              Whether you hand me a controller, a mouse and keyboard, a football, a racket, or a gamepad: 
+              <strong>give me 5 minutes, and I will understand the meta, master the timing, and compete at the highest level.</strong>
+            </p>
+
+            <div class="genre-grid">
+              <div class="genre-item">
+                <div class="g-icon">⚽</div>
+                <div class="g-body">
+                  <h4>Sports & Football</h4>
+                  <p>Real-life football matches, FIFA/eFootball, arcade soccer, and track athletics.</p>
+                </div>
+              </div>
+              <div class="genre-item">
+                <div class="g-icon">🎯</div>
+                <div class="g-body">
+                  <h4>Tactical & Shooters</h4>
+                  <p>Crosshair placement, flick precision, recoil compensation, and map positioning.</p>
+                </div>
+              </div>
+              <div class="genre-item">
+                <div class="g-icon">⚔️</div>
+                <div class="g-body">
+                  <h4>Action RPGs & Fighters</h4>
+                  <p>Frame data, parry timing, combo execution, dodge windows, and boss attack pattern recognition.</p>
+                </div>
+              </div>
+              <div class="genre-item">
+                <div class="g-icon">🏎️</div>
+                <div class="g-body">
+                  <h4>Racing & Simulators</h4>
+                  <p>Apex cornering, drift dynamics, weight transfer, and braking point calculation.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="philosophy-callout">
+              <div class="callout-icon">💡</div>
+              <div class="callout-text">
+                <strong>Why This Makes Me a Better Game Developer:</strong>
+                <span>Most developers only design what they play. Because I play and enjoy <em>everything</em>, I can bridge disparate mechanics into fresh, intoxicating player experiences.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: PLAYABLE CHUNIN EXAM CANVAS MINI-GAME -->
+    <section id="minigame" class="section-padded minigame-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">CHUNIN EXAM TRIAL // 実戦演習</span>
+          <h2 class="section-title">Playable Game: Shinobi & Football Dash</h2>
+          <p class="section-desc">Control Sohel! Dodge incoming kunai, collect Chakra orbs and footballs, and unleash your Rasengan!</p>
+        </div>
+
+        <div class="game-console">
+          <!-- Game HUD -->
+          <div class="game-hud">
+            <div class="hud-item">
+              <span class="hud-label">SCORE</span>
+              <span class="hud-val" id="hud-score">0</span>
+            </div>
+            <div class="hud-item">
+              <span class="hud-label">HIGH SCORE</span>
+              <span class="hud-val" id="hud-highscore">0</span>
+            </div>
+            <div class="hud-item">
+              <span class="hud-label">CHAKRA LEVEL</span>
+              <div class="hud-chakra-bar">
+                <div class="chakra-fill" id="hud-chakra-fill" style="width: 0%;"></div>
+              </div>
+            </div>
+            <div class="hud-item">
+              <span class="hud-label">NINJA RANK</span>
+              <span class="hud-val rank-val" id="hud-rank">GENIN</span>
+            </div>
+          </div>
+
+          <!-- Canvas Container -->
+          <div class="canvas-wrapper">
+            <canvas id="game-canvas" width="800" height="420"></canvas>
+            
+            <!-- Game Start / Game Over Overlay -->
+            <div class="game-overlay" id="game-overlay">
+              <div class="overlay-modal">
+                <div class="overlay-icon">🍥</div>
+                <h3 class="overlay-title" id="overlay-title">CHUNIN EXAM DASH</h3>
+                <p class="overlay-subtitle" id="overlay-desc">
+                  Catch <strong class="text-fire">Chakra Orbs 🌀</strong> & <strong class="text-fire">Footballs ⚽</strong>.<br>
+                  Dodge the <strong class="text-danger">Falling Kunai 🗡️</strong>!
+                </p>
+                <div class="controls-guide">
+                  <div class="k-guide"><span>← / A</span> Move Left</div>
+                  <div class="k-guide"><span>→ / D</span> Move Right</div>
+                  <div class="k-guide"><span>SPACE / ↑</span> Jump & Dodge</div>
+                  <div class="k-guide"><span>Z / R</span> Rasengan Burst (100% Chakra)</div>
+                </div>
+                <button class="btn btn-primary btn-large" id="btn-start-game">
+                  <span>START EXAM (遊び始める)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Controls Pad -->
+          <div class="mobile-controls-pad" aria-label="Mobile Game Controls">
+            <button class="pad-btn" id="m-btn-left">◀ Left</button>
+            <button class="pad-btn pad-jump" id="m-btn-jump">▲ Jump</button>
+            <button class="pad-btn" id="m-btn-right">Right ▶</button>
+            <button class="pad-btn pad-special" id="m-btn-special">🌀 Rasengan</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: NINDO PATH & TIMELINE -->
+    <section id="journey" class="section-padded journey-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">THE NINJA ODYSSEY // 成長の軌跡</span>
+          <h2 class="section-title">The Path to Game Hokage</h2>
+          <p class="section-desc">The milestone roadmap of Sohel Khan's game development odyssey</p>
+        </div>
+
+        <div class="timeline-container">
+          <div class="timeline-track"></div>
+
+          <!-- Milestone 1 -->
+          <div class="timeline-card">
+            <div class="timeline-node">
+              <span class="node-icon">🎮</span>
+            </div>
+            <div class="timeline-content">
+              <span class="timeline-time">EARLY YEARS (AGE 10 - 15)</span>
+              <h3 class="timeline-title">The Spark of Wonder</h3>
+              <p>
+                Fell in love with competitive gaming and local football tournaments. Discovered that the true magic of games lies in the invisible mathematical rules and physics guiding every kick, jump, and parry.
+              </p>
+            </div>
+          </div>
+
+          <!-- Milestone 2 -->
+          <div class="timeline-card">
+            <div class="timeline-node">
+              <span class="node-icon">🏛️</span>
+            </div>
+            <div class="timeline-content">
+              <span class="timeline-time">PRESENT // AGE 19</span>
+              <h3 class="timeline-title">JECRC University • B.Tech CSE Core</h3>
+              <p>
+                Currently mastering core computer science: memory management, Object-Oriented C++, Data Structures & Algorithms, discrete math, and computer systems. Bridging computer engineering with real-time graphics.
+              </p>
+            </div>
+          </div>
+
+          <!-- Milestone 3 -->
+          <div class="timeline-card">
+            <div class="timeline-node">
+              <span class="node-icon">⚡</span>
+            </div>
+            <div class="timeline-content">
+              <span class="timeline-time">ACTIVE CHUNIN TRAINING</span>
+              <h3 class="timeline-title">Engine Mastery & Prototype Forge</h3>
+              <p>
+                Building games in Unity (C#) and Unreal Engine 5 (C++/Blueprints). Developing custom arcade sports physics, combat juggle systems, and procedural dungeon generation.
+              </p>
+            </div>
+          </div>
+
+          <!-- Milestone 4 -->
+          <div class="timeline-card">
+            <div class="timeline-node">
+              <span class="node-icon">👑</span>
+            </div>
+            <div class="timeline-content">
+              <span class="timeline-time">FUTURE HORIZON</span>
+              <h3 class="timeline-title">Game Hokage: Industry Impact</h3>
+              <p>
+                Aspiring to engineer globally acclaimed AAA and indie gaming titles, pioneering breakthrough mechanics in sports simulations, action RPGs, and immersive interactive worlds.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: SUMMONING SCROLL (CONTACT & COLLABORATION) -->
+    <section id="contact" class="section-padded contact-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">SUMMONING CONTRACT // 口寄せの術</span>
+          <h2 class="section-title">Summon Sohel Khan</h2>
+          <p class="section-desc">Ready for Game Dev Internships, Hackathons, Studio Collaborations, or a match on the football pitch!</p>
+        </div>
+
+        <div class="scroll-contact-wrapper">
+          <!-- Traditional Ninja Scroll Design -->
+          <div class="ninja-scroll">
+            <div class="scroll-roller scroll-top"></div>
+            <div class="scroll-parchment">
+              <div class="parchment-inner">
+                <div class="scroll-crest-bg">火</div>
+                
+                <div class="hand-sign-selector">
+                  <span class="sign-title">Select Summoning Hand Sign:</span>
+                  <div class="sign-buttons">
+                    <button type="button" class="sign-btn active" data-sign="Tiger">寅 Tiger (Game Dev)</button>
+                    <button type="button" class="sign-btn" data-sign="Dragon">辰 Dragon (Internship)</button>
+                    <button type="button" class="sign-btn" data-sign="Snake">巳 Snake (Football / Sports)</button>
+                    <button type="button" class="sign-btn" data-sign="Ram">未 Ram (Say Hello)</button>
+                  </div>
+                </div>
+
+                <form id="summon-form" class="shinobi-form" onsubmit="return false;">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="shinobi-name">YOUR NAME / GUILD *</label>
+                      <input type="text" id="shinobi-name" placeholder="e.g. Kakashi Hatake / Indie Game Studio" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="shinobi-email">VILLAGE EMAIL *</label>
+                      <input type="email" id="shinobi-email" placeholder="e.g. recruiter@leafvillage.org" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="mission-type">MISSION CLASSIFICATION</label>
+                    <select id="mission-type">
+                      <option value="internship">S-Rank: Game Developer Internship / Junior Role</option>
+                      <option value="collab">A-Rank: Game Jam / Collaborative Project</option>
+                      <option value="sports">B-Rank: Football Tournament / Gaming Showdown</option>
+                      <option value="chat">C-Rank: Mentorship & Casual Tech Chat</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="shinobi-message">MISSION SCROLL CONTENT *</label>
+                    <textarea id="shinobi-message" rows="4" placeholder="Describe the mission brief, project idea, or summon request..." required></textarea>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary btn-summon" id="btn-summon">
+                    <span class="btn-icon">💥</span>
+                    <span>SUMMONING JUTSU: SEND SCROLL</span>
+                  </button>
+
+                  <div class="form-status" id="form-status" aria-live="polite"></div>
+                </form>
+              </div>
+            </div>
+            <div class="scroll-roller scroll-bottom"></div>
+          </div>
+
+          <!-- Shinobi Contact Details & Links -->
+          <div class="contact-links-panel">
+            <h3 class="panel-heading">Direct Ninja Channels</h3>
+            <p class="panel-desc">You can also reach Sohel Khan directly across these communication networks:</p>
+
+            <div class="contact-list">
+              <a href="mailto:sohelkhan.gamedev@gmail.com" class="c-link-card">
+                <span class="c-icon">📧</span>
+                <div class="c-info">
+                  <span class="c-label">Official Ninja Mail</span>
+                  <span class="c-value">sohelkhan.gamedev@gmail.com</span>
+                </div>
+              </a>
+
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="c-link-card">
+                <span class="c-icon">🐙</span>
+                <div class="c-info">
+                  <span class="c-label">GitHub Repository Scrolls</span>
+                  <span class="c-value">github.com/sohelkhan-dev</span>
+                </div>
+              </a>
+
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="c-link-card">
+                <span class="c-icon">💼</span>
+                <div class="c-info">
+                  <span class="c-label">Shinobi Network (LinkedIn)</span>
+                  <span class="c-value">linkedin.com/in/sohel-khan-jecrc</span>
+                </div>
+              </a>
+
+              <div class="c-link-card static-card">
+                <span class="c-icon">📍</span>
+                <div class="c-info">
+                  <span class="c-label">Village Station</span>
+                  <span class="c-value">JECRC University, Sitapura, Jaipur, Rajasthan</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="quote-shinobi">
+              <span class="q-kanji">絶対諦めない</span>
+              <p>"I never give up, and I never break my promise. That is my ninja way!"</p>
+              <span class="q-author">— Sohel Khan (Naruto Inspired)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="shinobi-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="f-brand">
+          <span class="f-logo">🍥 SOHEL KHAN</span>
+          <p class="f-sub">B.Tech CSE Core • JECRC University • Aspiring Game Developer • Striker ⚽</p>
+        </div>
+        <div class="f-nav">
+          <a href="#hero">Konoha Gate</a>
+          <a href="#about">Shinobi ID</a>
+          <a href="#arsenal">Jutsu Arsenal</a>
+          <a href="#missions">Missions</a>
+          <a href="#arena">Sports Arena</a>
+          <a href="#minigame">Play Game</a>
+          <a href="#contact">Summon</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">
+          Crafted with the <strong>Will of Fire 🔥</strong> & Code • Inspired by Naruto • © 2026 Sohel Khan.
+        </p>
+        <div class="easter-egg-hint">
+          <button id="easter-egg-btn" class="easter-btn" title="Click for Secret Chakra Burst!">🌀 Rasengan Secret</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PROJECT MODAL TEMPLATES -->
+  <div class="modal-backdrop" id="modal-backdrop" aria-hidden="true">
+    <div class="modal-box" id="modal-box">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close details">&times;</button>
+      <div class="modal-content" id="modal-content">
+        <!-- Injected dynamically via script.js -->
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
